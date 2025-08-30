@@ -1,0 +1,61 @@
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='Dummy'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Dummy'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Dummy'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-08-30 08:02:31.319270', '2025-08-30 08:02:31.319271') RETURNING "key" /*application='Dummy'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Dummy'*/[0m
+Migrating to CreatePricingRules (20250830074204)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Dummy'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "pricing_rules" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "type" varchar, "active" boolean, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Dummy'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250830074204') RETURNING "version" /*application='Dummy'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Dummy'*/[0m
+Migrating to AddPropertiesToPricingRules (20250830075556)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Dummy'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "pricing_rules" ADD "properties" jsonb DEFAULT '{}' /*application='Dummy'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250830075556') RETURNING "version" /*application='Dummy'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Dummy'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Dummy'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Dummy'*/[0m
+  [1m[36mPricing::FixedAmountDiscountRule Create (7.8ms)[0m  [1m[32mINSERT INTO "pricing_rules" ("type", "active", "created_at", "updated_at", "properties") VALUES ('Pricing::FixedAmountDiscountRule', NULL, '2025-08-30 08:03:22.710245', '2025-08-30 08:03:22.710245', '{"amount":5,"type":"fixed_amount_discount"}') RETURNING "id" /*application='Dummy'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Dummy'*/[0m
+Started GET "/cart/carts" for 127.0.0.1 at 2025-08-30 15:11:47 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Dummy'*/[0m
+  
+ActionController::RoutingError (No route matches [GET] "/cart/carts"):
+  
+  [1m[36mPricing::Rule Load (6.4ms)[0m  [1m[34mSELECT "pricing_rules".* FROM "pricing_rules" /* loading for pp */ LIMIT 11 /*application='Dummy'*/[0m
+  [1m[36mPricing::Rule Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "pricing_rules" LIMIT 1 /*application='Dummy'*/[0m
+  [1m[36mPricing::Rule Load (0.9ms)[0m  [1m[34mSELECT "pricing_rules".* FROM "pricing_rules" /*application='Dummy'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Dummy'*/[0m
+  [1m[36mPricing::FixedAmountDiscountRule Create (3.0ms)[0m  [1m[32mINSERT INTO "pricing_rules" ("type", "active", "created_at", "updated_at", "properties") VALUES ('Pricing::FixedAmountDiscountRule', NULL, '2025-08-30 08:19:14.658769', '2025-08-30 08:19:14.658769', '{"amount":10,"type":"fixed_amount_discount"}') RETURNING "id" /*application='Dummy'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Dummy'*/[0m
+  [1m[36mPricing::Rule Load (0.1ms)[0m  [1m[34mSELECT "pricing_rules".* FROM "pricing_rules" /* loading for pp */ LIMIT 11 /*application='Dummy'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Dummy'*/[0m
+  [1m[36mPricing::FixedAmountDiscountRule Create (7.1ms)[0m  [1m[32mINSERT INTO "pricing_rules" ("type", "active", "created_at", "updated_at", "properties") VALUES ('Pricing::FixedAmountDiscountRule', NULL, '2025-08-30 08:27:39.886997', '2025-08-30 08:27:39.886997', '{"amount":20,"type":"fixed_amount_discount"}') RETURNING "id" /*application='Dummy'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Dummy'*/[0m
+  [1m[36mPricing::Rule Load (1.6ms)[0m  [1m[34mSELECT "pricing_rules".* FROM "pricing_rules" /* loading for pp */ LIMIT 11 /*application='Dummy'*/[0m
+  [1m[36mPricing::Rule Load (1.5ms)[0m  [1m[34mSELECT "pricing_rules".* FROM "pricing_rules" /* loading for pp */ LIMIT 11 /*application='Dummy'*/[0m
+  [1m[36mPricing::Rule Load (0.3ms)[0m  [1m[34mSELECT "pricing_rules".* FROM "pricing_rules" /* loading for pp */ LIMIT 11 /*application='Dummy'*/[0m
+  [1m[36mPricing::Rule Count (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "pricing_rules" /*application='Dummy'*/[0m
+  [1m[36mPricing::Rule Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "pricing_rules" LIMIT 1 /*application='Dummy'*/[0m
+  [1m[36mPricing::Rule Load (0.1ms)[0m  [1m[34mSELECT "pricing_rules".* FROM "pricing_rules" /*application='Dummy'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Dummy'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Dummy'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Dummy'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Dummy'*/[0m
+  [1m[36mPricing::FixedAmountDiscountRule Create (7.2ms)[0m  [1m[32mINSERT INTO "pricing_rules" ("type", "active", "created_at", "updated_at", "properties") VALUES ('Pricing::FixedAmountDiscountRule', NULL, '2025-08-30 08:38:56.146114', '2025-08-30 08:38:56.146114', '{"amount":20,"type":"fixed_amount_discount"}') RETURNING "id" /*application='Dummy'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Dummy'*/[0m
+  [1m[36mPricing::FixedAmountDiscountRule Load (0.5ms)[0m  [1m[34mSELECT "pricing_rules".* FROM "pricing_rules" WHERE "pricing_rules"."type" = 'Pricing::FixedAmountDiscountRule' /* loading for pp */ LIMIT 11 /*application='Dummy'*/[0m
+  [1m[36mPricing::FixedAmountDiscountRule Count (2.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "pricing_rules" WHERE "pricing_rules"."type" = 'Pricing::FixedAmountDiscountRule' /*application='Dummy'*/[0m
+  [1m[36mPricing::FixedAmountDiscountRule Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "pricing_rules" WHERE "pricing_rules"."type" = 'Pricing::FixedAmountDiscountRule' LIMIT 1 /*application='Dummy'*/[0m
+  [1m[36mPricing::FixedAmountDiscountRule Load (4.4ms)[0m  [1m[34mSELECT "pricing_rules".* FROM "pricing_rules" WHERE "pricing_rules"."type" = 'Pricing::FixedAmountDiscountRule' /*application='Dummy'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Dummy'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Dummy'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Dummy'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Dummy'*/[0m
+  [1m[36mPricing::PercentageAmountDiscountRule Create (6.7ms)[0m  [1m[32mINSERT INTO "pricing_rules" ("type", "active", "created_at", "updated_at", "properties") VALUES ('Pricing::PercentageAmountDiscountRule', NULL, '2025-08-30 09:03:21.487423', '2025-08-30 09:03:21.487423', '{"amount":5,"type":"percentage_amount_discount"}') RETURNING "id" /*application='Dummy'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Dummy'*/[0m
+  [1m[36mPricing::Rule Load (0.5ms)[0m  [1m[34mSELECT "pricing_rules".* FROM "pricing_rules" /* loading for pp */ LIMIT 11 /*application='Dummy'*/[0m
+  [1m[36mPricing::PercentageAmountDiscountRule Load (1.0ms)[0m  [1m[34mSELECT "pricing_rules".* FROM "pricing_rules" WHERE "pricing_rules"."type" = 'Pricing::PercentageAmountDiscountRule' /* loading for pp */ LIMIT 11 /*application='Dummy'*/[0m
+  [1m[36mPricing::PercentageAmountDiscountRule Count (2.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pricing_rules" WHERE "pricing_rules"."type" = 'Pricing::PercentageAmountDiscountRule' /*application='Dummy'*/[0m
+  [1m[36mPricing::PercentageAmountDiscountRule Exists? (6.1ms)[0m  [1m[34mSELECT 1 AS one FROM "pricing_rules" WHERE "pricing_rules"."type" = 'Pricing::PercentageAmountDiscountRule' LIMIT 1 /*application='Dummy'*/[0m
+  [1m[36mPricing::PercentageAmountDiscountRule Load (0.7ms)[0m  [1m[34mSELECT "pricing_rules".* FROM "pricing_rules" WHERE "pricing_rules"."type" = 'Pricing::PercentageAmountDiscountRule' /*application='Dummy'*/[0m
