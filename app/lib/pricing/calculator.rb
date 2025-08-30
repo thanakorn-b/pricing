@@ -14,11 +14,11 @@ module Pricing
       Result.new(result_context)
     end
 
-    def self.notify
-      ActiveSupport::Notifications.instrument "pricing.Updated", this: :data do
-        p "publishing pricing updated event "
-      end
-    end
+    # def self.notify
+    #   ActiveSupport::Notifications.instrument "pricing.Updated", this: :data do
+    #     p "publishing pricing updated event "
+    #   end
+    # end
 
     private
 

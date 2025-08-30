@@ -59,3 +59,14 @@ ActionController::RoutingError (No route matches [GET] "/cart/carts"):
   [1m[36mPricing::PercentageAmountDiscountRule Count (2.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "pricing_rules" WHERE "pricing_rules"."type" = 'Pricing::PercentageAmountDiscountRule' /*application='Dummy'*/[0m
   [1m[36mPricing::PercentageAmountDiscountRule Exists? (6.1ms)[0m  [1m[34mSELECT 1 AS one FROM "pricing_rules" WHERE "pricing_rules"."type" = 'Pricing::PercentageAmountDiscountRule' LIMIT 1 /*application='Dummy'*/[0m
   [1m[36mPricing::PercentageAmountDiscountRule Load (0.7ms)[0m  [1m[34mSELECT "pricing_rules".* FROM "pricing_rules" WHERE "pricing_rules"."type" = 'Pricing::PercentageAmountDiscountRule' /*application='Dummy'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Dummy'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Dummy'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Dummy'*/[0m
+Started GET "/" for ::1 at 2025-08-30 16:48:04 +0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Dummy'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/thanakornboonyamanee/.local/share/mise/installs/ruby/3.4.1/lib/ruby/gems/3.4.0/gems/railties-8.0.2.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/thanakornboonyamanee/.local/share/mise/installs/ruby/3.4.1/lib/ruby/gems/3.4.0/gems/railties-8.0.2.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.5ms | GC: 0.0ms)
+Completed 200 OK in 51ms (Views: 2.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
